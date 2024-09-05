@@ -1,1 +1,9 @@
-<p>home works!</p>
+<section>
+  <div class="mt-3 row g-1">
+    @for (student of arrStudents; track student._id) {
+    <article class="col-12 col-md-6 col-lg-3">
+      <app-usercard [student]="student"></app-usercard>
+    </article>
+    }
+  </div>
+</section>
