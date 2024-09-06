@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IStudent } from '../../interfaces/istudent.interface';
 import { UsercardComponent } from '../../components/usercard/usercard.component';
+import { StudentsService } from '../../services/students.service';
 
 @Component({
   selector: 'app-home',
@@ -12,80 +13,15 @@ import { UsercardComponent } from '../../components/usercard/usercard.component'
 export class HomeComponent {
   
   arrStudents: IStudent[] = []
+  studentsService = inject(StudentsService)
 
-  ngOnInit() {
-    this.arrStudents = [
-      {
-        _id: '1',
-        first_name: 'John',
-        last_name: 'Doe',
-        username: 'johndoe',
-        email: '',
-        image: 'https://i.pravatar.cc/500?u=clemente.alonzomayorga@peticiones.online',
-        password: '',
-      },
-      {
-        _id: '1',
-        first_name: 'John',
-        last_name: 'Doe',
-        username: 'johndoe',
-        email: '',
-        image: 'https://i.pravatar.cc/500?u=clemente.alonzomayorga@peticiones.online',
-        password: '',
-      },
-      {
-        _id: '1',
-        first_name: 'John',
-        last_name: 'Doe',
-        username: 'johndoe',
-        email: '',
-        image: 'https://i.pravatar.cc/500?u=clemente.alonzomayorga@peticiones.online',
-        password: '',
-      },
-      {
-        _id: '1',
-        first_name: 'John',
-        last_name: 'Doe',
-        username: 'johndoe',
-        email: '',
-        image: 'https://i.pravatar.cc/500?u=clemente.alonzomayorga@peticiones.online',
-        password: '',
-      },
-      {
-        _id: '1',
-        first_name: 'John',
-        last_name: 'Doe',
-        username: 'johndoe',
-        email: '',
-        image: 'https://i.pravatar.cc/500?u=clemente.alonzomayorga@peticiones.online',
-        password: '',
-      },
-      {
-        _id: '1',
-        first_name: 'John',
-        last_name: 'Doe',
-        username: 'johndoe',
-        email: '',
-        image: 'https://i.pravatar.cc/500?u=clemente.alonzomayorga@peticiones.online',
-        password: '',
-      },
-      {
-        _id: '1',
-        first_name: 'John',
-        last_name: 'Doe',
-        username: 'johndoe',
-        email: '',
-        image: 'https://i.pravatar.cc/500?u=clemente.alonzomayorga@peticiones.online',
-        password: '',
-      },
-      {
-        _id: '1',
-        first_name: 'John',
-        last_name: 'Doe',
-        username: 'johndoe',
-        email: '',
-        image: 'https://i.pravatar.cc/500?u=clemente.alonzomayorga@peticiones.online',
-        password: '',
-      }
-  ]}
+  async ngOnInit() {
+    try {
+      const response = await this.studentsService.getAll()
+      this.arrStudents = response
+      console.log(this.arrStudents)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 }
