@@ -25,7 +25,9 @@ export class StudentsService {
     return firstValueFrom(this.http.post<IStudent>(this.baseURL, body))
   }
 
-  update(id: string, body: IStudent): Promise<IStudent> {
+  update(body: IStudent): Promise<IStudent> {
+    let id = body._id;
+    delete body._id;
     return firstValueFrom(this.http.put<IStudent>(`${this.baseURL}${id}`, body))
   }
 
