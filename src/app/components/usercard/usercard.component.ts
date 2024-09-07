@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
+import { StudentsService } from '../../services/students.service';
 
 @Component({
   selector: 'app-usercard',
@@ -11,6 +12,8 @@ import Swal from 'sweetalert2';
 })
 export class UsercardComponent {
   @Input() student: any;
+
+  studentsService = inject(StudentsService)
 
   deleteUser() {
     Swal.fire({
@@ -25,13 +28,28 @@ export class UsercardComponent {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        //TODO: Delete user API
-
-        Swal.fire({
-          title: 'Usuario eliminado con éxito',
-          icon: 'success',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'Volver',
+       
+        this.studentsService.delete(this.student._id).then((response) => {
+          if(response._id){
+            Swal.fire({
+              title: 'Usuario eliminado con éxito',
+              text: `El usuario ${this.student.first_name} ${this.student.last_name} ha sido eliminado.`,
+              icon: 'success',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'Volver',
+            });
+          } else {
+            throw new Error('Error al eliminar el usuario');
+          }
+        }).catch((error) => {
+          
+          Swal.fire({
+            title: 'Error al eliminar el usuario',
+            text: 'No se pudo eliminar el usuario. Por favor, intenta nuevamente.',
+            icon: 'error',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Volver',
+          });
         });
       }
     });
