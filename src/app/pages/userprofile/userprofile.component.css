@@ -1,0 +1,21 @@
+.custom-btn {
+  background-color: transparent;
+  color: black;
+  border: 1px solid black;
+  padding: 30px 50px 30px 50px;
+}
+
+.btn-delete:hover {
+  background-color: rgb(245, 107, 107);
+  color: black;
+}
+
+.btn-update:hover {
+  background-color: rgb(253, 190, 72);
+  color: black;
+}
+
+.btn-back:hover {
+  background-color: rgb(73, 196, 245);
+  color: black;
+}

@@ -1,0 +1,21 @@
+i {
+  color: gray;
+}
+
+i:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.fa-magnifying-glass:hover {
+  color: skyblue;
+}
+
+.fa-pen-to-square:hover {
+  color: orange;
+}
+
+.fa-trash:hover {
+  color: red;
+}

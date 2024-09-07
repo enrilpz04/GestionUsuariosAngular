@@ -1,0 +1,74 @@
+<section class="container mt-3">
+  <div class="card shadow p-5">
+    <h3>{{ formType }}</h3>
+    <hr />
+    <form [formGroup]="studentForm" (ngSubmit)="getDataForm()">
+      <div class="my-3">
+        <label class="form-label" for="firstName">Nombre Usuario</label>
+        <input
+          class="form-control"
+          type="text"
+          id="firstName"
+          formControlName="firstName"
+          placeholder="Introduzca nombre de usuario"
+        />
+        @if(checkControl('firstName', 'required')){
+        <p class="error">* Este campo es obligatorio</p>
+        }
+      </div>
+
+      <div class="my-3">
+        <label class="form-label" for="lastName">Apellido Usuario</label>
+        <input
+          class="form-control"
+          type="text"
+          id="lastName"
+          formControlName="lastName"
+          placeholder="Introduzca apellido de usuario"
+        />
+        @if(checkControl('lastName', 'required')){
+        <p class="error">* Este campo es obligatorio</p>
+        }
+      </div>
+
+      <div class="my-3">
+        <label class="form-label" for="email">Email Usuario</label>
+        <input
+          class="form-control"
+          type="text"
+          id="email"
+          formControlName="email"
+          placeholder="Introduzca email de usuario"
+        />
+        @if(checkControl('email', 'required')){
+        <p class="error">* Este campo es obligatorio</p>
+        } @if(checkControl('email', 'email')){
+        <p class="error">* El formato del email no es válido</p>
+        }
+      </div>
+
+      <div class="my-3">
+        <label class="form-label" for="imageURL">Imagen Usuario</label>
+        <input
+          class="form-control"
+          type="text"
+          id="imageURL"
+          formControlName="imageURL"
+          placeholder="Introduzca url de foto usuario"
+        />
+        @if(checkControl('imageURL', 'required')){
+        <p class="error">* Este campo es obligatorio</p>
+        }
+      </div>
+
+      <div class="my-3">
+        <input
+          type="submit"
+          [value]="buttonText"
+          [disabled]="!studentForm.valid"
+          class="btn btn-danger"
+        />
+      </div>
+    </form>
+  </div>
+</section>
