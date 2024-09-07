@@ -8,20 +8,24 @@ import { StudentsService } from '../../services/students.service';
   standalone: true,
   imports: [UsercardComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  
-  arrStudents: IStudent[] = []
-  studentsService = inject(StudentsService)
+  // Array to store the students
+  arrStudents: IStudent[] = [];
+
+  // Inject the StudentsService
+  studentsService = inject(StudentsService);
 
   async ngOnInit() {
     try {
-      const response = await this.studentsService.getAll()
-      this.arrStudents = response
-      console.log(this.arrStudents)
+      // Call the getAll method from the StudentsService
+      const response = await this.studentsService.getAll();
+
+      // Store the response in the arrStudents array
+      this.arrStudents = response;
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
 }
