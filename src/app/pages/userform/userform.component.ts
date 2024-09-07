@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { StudentsService } from '../../services/students.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IStudent } from '../../interfaces/istudent.interface';
 
 @Component({
@@ -23,10 +23,18 @@ export class UserformComponent {
 
   constructor() {
     this.studentForm = new FormGroup({
-      firstName: new FormControl(null, []),
-      lastName: new FormControl(null, []),
-      email: new FormControl(null, []),
-      imageURL: new FormControl(null, [])
+      firstName: new FormControl(null, [
+        Validators.required
+      ]),
+      lastName: new FormControl(null, [
+        Validators.required
+      ]),
+      email: new FormControl(null, [
+        Validators.required
+      ]),
+      imageURL: new FormControl(null, [
+        Validators.required
+      ])
     }, [])
   }
 
@@ -36,12 +44,24 @@ export class UserformComponent {
         this.formType = 'ACTUALIZAR USUARIO'
         const student: IStudent = await this.studentsService.getById(params.id)
         this.studentForm = new FormGroup({
-          firstName: new FormControl(student.first_name, []),
-          lastName: new FormControl(student.last_name, []),
-          email: new FormControl(student.email, []),
-          imageURL: new FormControl(student.image, [])
+          firstName: new FormControl(student.first_name, [
+            Validators.required
+          ]),
+          lastName: new FormControl(student.last_name, [
+            Validators.required
+          ]),
+          email: new FormControl(student.email, [
+            Validators.required
+          ]),
+          imageURL: new FormControl(student.image, [
+            Validators.required
+          ])
         }, [])
       }
     })
+  }
+
+  getDataForm(){
+
   }
 }
