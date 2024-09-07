@@ -1,18 +1,18 @@
 <section>
     <div class="mt-4 pt-4 d-flex">
         <figure class="w-50 text-center">
-            <img [src]="student.image" class="rounded-circle w-75" />
+            <img [src]="student?.image" class="rounded-circle w-75" />
         </figure>
         <div class="vr me-4"></div>
         <div class="w-50 h-100">
-            <h1 class="mb-4">{{ student.first_name }}</h1>
-            <h1 class="mb-5">{{ student.last_name }}</h1>
-            <h5 class="mb-4"><b>Nombre Usuario: </b>{{ student.username}}</h5>
-            <h5 class="mb-5"><b>Email: </b>{{ student.email}}</h5>
+            <h1 class="mb-4">{{ student?.first_name }}</h1>
+            <h1 class="mb-5">{{ student?.last_name }}</h1>
+            <h5 class="mb-4"><b>Nombre Usuario: </b>{{ student?.username}}</h5>
+            <h5 class="mb-5"><b>Email: </b>{{ student?.email}}</h5>
 
             <div class="btn-group" role="group">
                 <a (click)="deleteUser()" class="btn custom-btn btn-delete">Eliminar</a>
-                <a [routerLink]="['/updateuser', student._id]" class="btn custom-btn btn-update">Actualizar</a>
+                <a [routerLink]="['/updateuser', student?._id]" class="btn custom-btn btn-update">Actualizar</a>
                 <a [routerLink]="['/home']" class="btn custom-btn btn-back">Volver al Listado</a>
             </div>
         </div>

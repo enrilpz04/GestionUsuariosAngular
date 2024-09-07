@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrl: './userprofile.component.css'
 })
 export class UserprofileComponent {
-  student! : IStudent
+  student : IStudent | null = null
   activatedRoute = inject(ActivatedRoute)
   studentsService = inject(StudentsService)
 
@@ -27,7 +27,7 @@ export class UserprofileComponent {
   deleteUser() {
     Swal.fire({
       title:
-        '¿Estás seguro de eliminar al usuario ' + this.student.first_name + '?',
+        '¿Estás seguro de eliminar al usuario ' + this.student?.first_name + '?',
       text: 'No podrás revertir esto',
       icon: 'warning',
       showCancelButton: true,
@@ -37,11 +37,11 @@ export class UserprofileComponent {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.studentsService.delete(this.student._id).then((response) => {
+        this.studentsService.delete(this.student?._id!).then((response) => {
           if(response._id){
             Swal.fire({
               title: 'Usuario eliminado con éxito',
-              text: `El usuario ${this.student.first_name} ${this.student.last_name} ha sido eliminado.`,
+              text: `El usuario ${this.student?.first_name} ${this.student?.last_name} ha sido eliminado.`,
               icon: 'success',
               confirmButtonColor: '#3085d6',
               confirmButtonText: 'Volver',
